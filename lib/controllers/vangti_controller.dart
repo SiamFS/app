@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/vangti_model.dart';
+import '../utils/constants.dart';
 
 class VangtiController extends ChangeNotifier {
   VangtiModel _model = VangtiModel(amount: 0, change: {});
@@ -17,11 +18,10 @@ class VangtiController extends ChangeNotifier {
   }
 
   void _calculateChange(int amount) {
-    final notes = [500, 100, 50, 20, 10, 5, 2, 1];
     Map<int, int> change = {};
     int remainingAmount = amount;
 
-    for (var note in notes) {
+    for (var note in takaNotes) {
       if (remainingAmount >= note) {
         change[note] = remainingAmount ~/ note;
         remainingAmount %= note;

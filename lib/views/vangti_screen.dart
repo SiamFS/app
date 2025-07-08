@@ -54,7 +54,6 @@ class _VangtiScreenState extends State<VangtiScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Amount display at the top with better spacing
           Padding(
             padding: const EdgeInsets.only(
               top: AppDimensions.amountDisplayTopPadding, 
@@ -63,12 +62,11 @@ class _VangtiScreenState extends State<VangtiScreen> {
             child: Center(child: AmountDisplay(amount: _controller.model.amount)),
           ),
           
-          // Change display and keypad side by side
+          // Change display and keypad section
           Expanded(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Left side for change display with more space
                 Expanded(
                   flex: AppDimensions.changeDisplayFlex,
                   child: Column(
@@ -88,8 +86,6 @@ class _VangtiScreenState extends State<VangtiScreen> {
                     ).toList(),
                   ),
                 ),
-                
-                // Right side for keypad
                 Expanded(
                   flex: AppDimensions.keypadFlex,
                   child: NumericKeypad(
@@ -110,7 +106,6 @@ class _VangtiScreenState extends State<VangtiScreen> {
       padding: const EdgeInsets.all(AppDimensions.landscapeContainerPadding),
       child: Column(
         children: [
-          // Amount display at the top with more padding
           Padding(
             padding: const EdgeInsets.only(
               top: AppDimensions.amountDisplayTopPaddingLandscape, 
@@ -130,12 +125,9 @@ class _VangtiScreenState extends State<VangtiScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildChangeItem(500),
-                            _buildChangeItem(100),
-                            _buildChangeItem(50),
-                            _buildChangeItem(20),
-                          ],
+                          children: takaNotes.take(4).map((denomination) => 
+                            _buildChangeItem(denomination)
+                          ).toList(),
                         ),
                       ),
                       // Second column of change display
@@ -143,12 +135,9 @@ class _VangtiScreenState extends State<VangtiScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildChangeItem(10),
-                            _buildChangeItem(5),
-                            _buildChangeItem(2),
-                            _buildChangeItem(1),
-                          ],
+                          children: takaNotes.skip(4).map((denomination) => 
+                            _buildChangeItem(denomination)
+                          ).toList(),
                         ),
                       ),
                     ],
